@@ -19,5 +19,6 @@ public class GameManager : MonoBehaviour {
 
     public void LoadScene(EnumScene scene) {
         SceneManager.LoadScene((int)scene);
+        days++;
     }
 }

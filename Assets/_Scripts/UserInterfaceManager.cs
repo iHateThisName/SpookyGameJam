@@ -32,6 +32,7 @@ public class UserInterfaceManager : MonoBehaviour
                 timerIsRunning = false;
             }
         }
+        SetDay(GameObject.Find("GameManager").GetComponent<GameManager>().days);
     }
 
     void DisplayTime(float timeToDisplay)
@@ -39,12 +40,11 @@ public class UserInterfaceManager : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        timerText.text = $"{minutes}.{seconds}";
+        timerText.text = $"{minutes}:{seconds}";
     }
 
     void SetDay(float dayTime)
     {
-        int daysInt = GameObject.Find("GameManager").GetComponent<GameManager>().days;
-        dayText.text = $"{daysInt}";
+        dayText.text = $"{dayTime}";
     }
 }
