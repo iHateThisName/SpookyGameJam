@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ZombieSpawn
+  - Pickup
   layers:
   - Default
   - TransparentFX
