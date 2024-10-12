@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField]
-    private float speed;
-    [SerializeField]
-    private float rotationSpeed;
+    private float speed = 4;
+//    [SerializeField]
+ //   private float rotationSpeed;
 
     void Update()
     {
