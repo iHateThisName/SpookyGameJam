@@ -21,7 +21,7 @@ public class CircleSliderManager : MonoBehaviour
         FillCircleValue(fillValue);
     }
 
-    void FillCircleValue(float value)
+    public void FillCircleValue(float value)
     {
         float fillAmount = (value / 100.0f);
         circleFillImage.fillAmount = fillAmount;

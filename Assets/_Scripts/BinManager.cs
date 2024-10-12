@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class BinManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public CircleSliderManager circleSliderManager;
+
+    public GameObject objectToSpawn;
+
     void Update()
     {
-        
+        if (circleSliderManager.fillValue > 99)
+        {
+            Debug.Log("filled bar");
+            Instantiate(objectToSpawn);
+            objectToSpawn.transform.position = this.transform.position;
+            Destroy(this.gameObject);
+        }
     }
 }
