@@ -3,84 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerManager : MonoBehaviour
-{
+public class PlayerManager : MonoBehaviour {
     [SerializeField]
     private float speed = 4;
+
     [SerializeField]
-    private bool canInteract = false;
-    public CircleSliderManager circleSliderManager;
-
-    void Update()
-    {
-        float HorizontalDirection = Input.GetAxis("Horizontal");
-        float VerticalDirection = Input.GetAxis("Vertical");
-        Vector2 movementDirection = new Vector2(HorizontalDirection, VerticalDirection);
-
-        transform.Translate(movementDirection * speed * Time.deltaTime);
-
-
-        if (canInteract)
-        {
-            if (Input.GetKey(KeyCode.E))
-            {
-                circleSliderManager.fillValue++;
-            }
-            else if (circleSliderManager.fillValue > 0)
-            {
-                circleSliderManager.fillValue--;
-            }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Compactor"))
-        {
-            canInteract = true;
-        }
-     //   canInteract = false;
-    }
-}
-
-/*
- * [SerializeField]
-    private float speed;
+    private GameObject spriteDown;
     [SerializeField]
-    private float rotationSpeed;
+    private GameObject spriteUp;
+    [SerializeField]
+    private GameObject spriteLeft;
+    [SerializeField]
+    private GameObject spriteRight;
 
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        spriteDown.SetActive(true);
+        spriteUp.SetActive(false);
+        spriteLeft.SetActive(false);
+        spriteRight.SetActive(false);
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+    void Update() {
+        float horizontalDirection = Input.GetAxis("Horizontal");
+        float verticalDirection = Input.GetAxis("Vertical");
+        //transform.Translate(horizontalDirection * speed * Time.deltaTime * Vector2.right);
 
-       if (Mathf.Abs(horizontalInput) > Mathf.Abs(verticalInput))
-        {
-            verticalInput = 0;
-        }
-        else
-        {
-            horizontalInput = 0;
-        }
-
-       Vector2 movementDirection = new Vector2(horizontalInput, verticalInput);
+        Vector2 movementDirection = new Vector2(horizontalDirection, verticalDirection);
         float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
         movementDirection.Normalize();
 
-        transform.Translate(movementDirection * speed * inputMagnitude * Time.deltaTime, Space.World);
+        transform.Translate(movementDirection * speed * inputMagnitude * Time.deltaTime);
 
-        if (movementDirection != Vector2.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        #region Sprite
+        // W
+        if (verticalDirection > 0) {
+            spriteDown.SetActive(false);
+            spriteUp.SetActive(true);
+            spriteLeft.SetActive(false);
+            spriteRight.SetActive(false);
         }
-    }*/
+        // S
+        else if (verticalDirection < 0) {
+            spriteDown.SetActive(true);
+            spriteUp.SetActive(false);
+            spriteLeft.SetActive(false);
+            spriteRight.SetActive(false);
+        }
+        // A
+        else if (horizontalDirection < 0) {
+            spriteDown.SetActive(false);
+            spriteUp.SetActive(false);
+            spriteLeft.SetActive(true);
+            spriteRight.SetActive(false);
+        }
+        // D
+        else if (horizontalDirection > 0) {
+            spriteDown.SetActive(false);
+            spriteUp.SetActive(false);
+            spriteLeft.SetActive(false);
+            spriteRight.SetActive(true);
+        }
+        #endregion
+    }
+}
