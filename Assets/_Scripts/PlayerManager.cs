@@ -11,9 +11,6 @@ public class PlayerManager : MonoBehaviour
     private bool canInteract = false;
     public CircleSliderManager circleSliderManager;
 
-    public GameObject objectToSpawn;
-    public GameObject objectToSpawnPrefab;
-
     void Update()
     {
         float HorizontalDirection = Input.GetAxis("Horizontal");
@@ -41,6 +38,7 @@ public class PlayerManager : MonoBehaviour
         {
             canInteract = true;
         }
+     //   canInteract = false;
     }
 }
 
