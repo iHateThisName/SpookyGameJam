@@ -8,7 +8,7 @@ public class UserInterfaceManager : MonoBehaviour
 {
     public TMP_Text timerText, dayText;
 
-    public float timeRemaining = 1;
+    public float timeLeft = 1;
     public bool timerIsRunning = false;
 
     void Start()
@@ -18,17 +18,17 @@ public class UserInterfaceManager : MonoBehaviour
 
     void Update()
     {
-        DisplayTime(timeRemaining);
+        DisplayTime(timeLeft);
         if (timerIsRunning)
         {
-            if (timeRemaining > 0)
+            if (timeLeft > 0)
             {
-                timeRemaining -= Time.deltaTime;
+                timeLeft -= Time.deltaTime;
             }
             else
             {
                 Debug.Log("Time ran out");
-                timeRemaining = 0;
+                timeLeft = 0;
                 timerIsRunning = false;
             }
         }
