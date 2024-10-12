@@ -12,7 +12,14 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         float HorizontalDirection = Input.GetAxis("Horizontal");
-        transform.Translate(HorizontalDirection * speed * Time.deltaTime * Vector2.right);
+        float VerticalDirection = Input.GetAxis("Vertical");
+        //transform.Translate(HorizontalDirection * speed * Time.deltaTime * Vector2.right);
+
+        Vector2 movementDirection = new Vector2(HorizontalDirection, VerticalDirection);
+        float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
+        movementDirection.Normalize();
+
+        transform.Translate(movementDirection * speed * inputMagnitude * Time.deltaTime);
     }
 }
 
