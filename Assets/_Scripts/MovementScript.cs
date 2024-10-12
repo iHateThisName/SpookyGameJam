@@ -36,6 +36,6 @@ public class MovementScript : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
 
-        }
+        } 
     }
 }
