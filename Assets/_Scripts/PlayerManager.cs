@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerManager : MonoBehaviour {
+public class PlayerManager : MonoBehaviour
+{
+    public CircleSliderManager circleSliderManager;
+
     [SerializeField]
     private float speed = 4;
+    [SerializeField]
+    private bool canInteract = false;
 
     [SerializeField]
     private GameObject spriteDown;
@@ -16,53 +21,76 @@ public class PlayerManager : MonoBehaviour {
     [SerializeField]
     private GameObject spriteRight;
 
-    void Start() {
+    void Start()
+    {
         spriteDown.SetActive(true);
         spriteUp.SetActive(false);
         spriteLeft.SetActive(false);
         spriteRight.SetActive(false);
     }
 
-    void Update() {
+    void Update()
+    {
         float horizontalDirection = Input.GetAxis("Horizontal");
         float verticalDirection = Input.GetAxis("Vertical");
-        //transform.Translate(horizontalDirection * speed * Time.deltaTime * Vector2.right);
-
         Vector2 movementDirection = new Vector2(horizontalDirection, verticalDirection);
-        float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
-        movementDirection.Normalize();
 
-        transform.Translate(movementDirection * speed * inputMagnitude * Time.deltaTime);
+        transform.Translate(movementDirection * speed * Time.deltaTime);
+
 
         #region Sprite
         // W
-        if (verticalDirection > 0) {
+        if (verticalDirection > 0)
+        {
             spriteDown.SetActive(false);
             spriteUp.SetActive(true);
             spriteLeft.SetActive(false);
             spriteRight.SetActive(false);
         }
         // S
-        else if (verticalDirection < 0) {
+        else if (verticalDirection < 0)
+        {
             spriteDown.SetActive(true);
             spriteUp.SetActive(false);
             spriteLeft.SetActive(false);
             spriteRight.SetActive(false);
         }
         // A
-        else if (horizontalDirection < 0) {
+        else if (horizontalDirection < 0)
+        {
             spriteDown.SetActive(false);
             spriteUp.SetActive(false);
             spriteLeft.SetActive(true);
             spriteRight.SetActive(false);
         }
         // D
-        else if (horizontalDirection > 0) {
+        else if (horizontalDirection > 0)
+        {
             spriteDown.SetActive(false);
             spriteUp.SetActive(false);
             spriteLeft.SetActive(false);
             spriteRight.SetActive(true);
         }
         #endregion
+
+        if (canInteract)
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                circleSliderManager.fillValue++;
+            }
+            else if (circleSliderManager.fillValue > 0)
+            {
+                circleSliderManager.fillValue--;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Compactor"))
+        {
+            canInteract = true;
+        }
     }
 }

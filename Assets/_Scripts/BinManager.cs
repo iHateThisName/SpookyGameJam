@@ -5,8 +5,6 @@ using UnityEngine;
 public class BinManager : MonoBehaviour
 {
     public CircleSliderManager circleSliderManager;
-
-
     public GameObject objectToSpawn;
 
     void Update()
