@@ -900,9 +900,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c289132f28e334d44845304c361cd076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleSliderManager: {fileID: 1658042389}
   speed: 4
   canInteract: 0
-  circleSliderManager: {fileID: 1658042389}
+  spriteDown: {fileID: 0}
+  spriteUp: {fileID: 0}
+  spriteLeft: {fileID: 0}
+  spriteRight: {fileID: 0}
 --- !u!1 &923089852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 771312941889000356, guid: fb57f365e18451641b49bc21f13fbde3, type: 3}
@@ -1849,7 +1853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6494689045031318311, guid: 5a9db23d96946764a9741e5b7f4865e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.35
+      value: -7.89
       objectReference: {fileID: 0}
     - target: {fileID: 6494689045031318311, guid: 5a9db23d96946764a9741e5b7f4865e2, type: 3}
       propertyPath: m_LocalPosition.z
