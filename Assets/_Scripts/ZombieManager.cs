@@ -33,7 +33,9 @@ public class ZombieManager : MonoBehaviour {
             int spawnAmount = Random.Range(MinSpawnAmount, MaxSpawnAmount + 1);
             //Debug.Log($"spawnAmount = {spawnAmount}, min = {MinSpawnAmount}, max = {MaxSpawnAmount}");
             for (int i = 0; i < spawnAmount; i++) {
-                Instantiate(zombiePrefab, spawnPoint.position, spawnPoint.rotation).transform.parent = zombiesCollection.transform;
+                Vector2 randomOffset = new Vector2(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f));
+                Vector2 spawnPosition = (Vector2)spawnPoint.position + randomOffset;
+                Instantiate(zombiePrefab, spawnPosition, spawnPoint.rotation).transform.parent = zombiesCollection.transform;
             }
         }
     }
