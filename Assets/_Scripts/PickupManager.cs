@@ -15,11 +15,11 @@ public class PickupManager : MonoBehaviour
         switch (medicineType)
         {
             case 0:
-                medicineChillPill = 10;
+                medicineChillPill = 20;
                 this.GetComponent<SpriteRenderer>().sprite = medicineSprites[0];
                 break;
             case 1:
-                medicineChillPill = -20;
+                medicineChillPill = -30;
                 this.GetComponent<SpriteRenderer>().sprite = medicineSprites[1];
                 break;
             default:
