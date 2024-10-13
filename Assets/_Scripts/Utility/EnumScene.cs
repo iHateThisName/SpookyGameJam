@@ -4,7 +4,7 @@ public enum EnumScene {
     TutorialLevel01 = 2,
     TutorialLevel02 = 3,
     Level01 = 4,
-    Level02 = 5, 
+    Level02 = 5,
     Level03 = 6,
     Level04 = 7,
     Level05 = 8,
@@ -13,4 +13,5 @@ public enum EnumScene {
     Level08 = 11,
     Level09 = 12,
     Level10 = 13,
+    InfectedDialogScene = 14,
 }
