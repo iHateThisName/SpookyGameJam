@@ -81,15 +81,8 @@ public class ZombieMovment : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-
-            // Calculate the direction to push the player (opposite of the zombie's movement direction)
-            //Vector2 pushDirection = (player.position - transform.position).normalized;
-
-            // Apply a force to the player's Rigidbody2D
-            //float pushForce = 0.5f;
-            //playerRb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-
             StartCoroutine(FreezeAndPushPlayer(playerRb));
+            collision.gameObject.GetComponent<PlayerManager>().PlayerDeath();
         }
     }
 

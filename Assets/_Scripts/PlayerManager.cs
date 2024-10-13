@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerManager : MonoBehaviour
-{
+public class PlayerManager : MonoBehaviour {
     public CircleSliderManager circleSliderManager;
-    public int sanity = 3;
+    private int sanity = 3;
 
     [SerializeField]
     private float speed = 4;
@@ -22,16 +21,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private GameObject spriteRight;
 
-    void Start()
-    {
+    void Start() {
         spriteDown.SetActive(true);
         spriteUp.SetActive(false);
         spriteLeft.SetActive(false);
         spriteRight.SetActive(false);
     }
 
-    void Update()
-    {
+    void Update() {
         float horizontalDirection = Input.GetAxis("Horizontal");
         float verticalDirection = Input.GetAxis("Vertical");
         Vector2 movementDirection = new Vector2(horizontalDirection, verticalDirection);
@@ -41,32 +38,28 @@ public class PlayerManager : MonoBehaviour
 
         #region Sprite
         // W
-        if (verticalDirection > 0)
-        {
+        if (verticalDirection > 0) {
             spriteDown.SetActive(false);
             spriteUp.SetActive(true);
             spriteLeft.SetActive(false);
             spriteRight.SetActive(false);
         }
         // S
-        else if (verticalDirection < 0)
-        {
+        else if (verticalDirection < 0) {
             spriteDown.SetActive(true);
             spriteUp.SetActive(false);
             spriteLeft.SetActive(false);
             spriteRight.SetActive(false);
         }
         // A
-        else if (horizontalDirection < 0)
-        {
+        else if (horizontalDirection < 0) {
             spriteDown.SetActive(false);
             spriteUp.SetActive(false);
             spriteLeft.SetActive(true);
             spriteRight.SetActive(false);
         }
         // D
-        else if (horizontalDirection > 0)
-        {
+        else if (horizontalDirection > 0) {
             spriteDown.SetActive(false);
             spriteUp.SetActive(false);
             spriteLeft.SetActive(false);
@@ -74,32 +67,26 @@ public class PlayerManager : MonoBehaviour
         }
         #endregion
 
-        if (canInteract)
-        {
-            if (Input.GetKey(KeyCode.E))
-            {
+        if (canInteract) {
+            if (Input.GetKey(KeyCode.E)) {
                 circleSliderManager.fillValue++;
-            }
-            else if (circleSliderManager.fillValue > 0)
-            {
+            } else if (circleSliderManager.fillValue > 0) {
                 circleSliderManager.fillValue--;
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Compactor"))
-        {
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Compactor")) {
             canInteract = true;
         }
     }
 
-    private void PlayerDeath()
-    {
-        if (sanity <= 0)
-        {
-            GameManager.Instance.LoadScene(EnumScene.GameOverScene);
+    public void PlayerDeath() {
+        sanity--;
+        if (sanity <= 0) {
+            //GameManager.Instance.LoadScene(EnumScene.GameOverScene);
+            GameManager.Instance.LoadScene(EnumScene.MainMenu);
         }
     }
 }
