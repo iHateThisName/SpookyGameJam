@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public CircleSliderManager circleSliderManager;
+    public int sanity = 3;
 
     [SerializeField]
     private float speed = 4;
@@ -91,6 +92,14 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Compactor"))
         {
             canInteract = true;
+        }
+    }
+
+    private void PlayerDeath()
+    {
+        if (sanity <= 0)
+        {
+            GameManager.Instance.LoadScene(EnumScene.GameOverScene);
         }
     }
 }
