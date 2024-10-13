@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class ZombieManager : MonoBehaviour {
@@ -22,8 +23,8 @@ public class ZombieManager : MonoBehaviour {
         zombiesCollection.transform.parent = transform;
 
         //Get Max and Min Spawn Amount
-        MaxSpawnAmount = GameManager.Instance.days;
-        if (GameManager.Instance.days / 2 > 1) MinSpawnAmount = GameManager.Instance.days / 2;
+        MaxSpawnAmount = GameManager.Instance.GetDays();
+        if (GameManager.Instance.GetDays() / 2 > 1) MinSpawnAmount = GameManager.Instance.GetDays() / 2;
 
         SpawnZombies();
     }

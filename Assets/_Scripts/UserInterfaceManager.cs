@@ -32,7 +32,7 @@ public class UserInterfaceManager : MonoBehaviour
                 timerIsRunning = false;
             }
         }
-        SetDay(GameObject.Find("GameManager").GetComponent<GameManager>().days);
+        SetDay(GameObject.Find("GameManager").GetComponent<GameManager>().GetDays());
     }
 
     void DisplayTime(float timeToDisplay)

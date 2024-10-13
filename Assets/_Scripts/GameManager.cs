@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
-    public int days = 0;
+    [SerializeField]
+    private int days = 0;
 
-    private void Awake() {
+private void Awake() {
         if (Instance == null) {
             Instance = this;
             transform.SetParent(null);
@@ -20,5 +21,10 @@ public class GameManager : MonoBehaviour {
     public void LoadScene(EnumScene scene) {
         SceneManager.LoadScene((int)scene);
         days++;
+    }
+
+    public int GetDays()
+    {
+        return days;
     }
 }
