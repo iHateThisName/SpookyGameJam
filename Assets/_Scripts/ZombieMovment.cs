@@ -9,6 +9,15 @@ public class ZombieMovment : MonoBehaviour {
 
     public bool isAttacking = true;
 
+    [SerializeField]
+    private GameObject spriteDown;
+    [SerializeField]
+    private GameObject spriteUp;
+    [SerializeField]
+    private GameObject spriteLeft;
+    [SerializeField]
+    private GameObject spriteRight;
+
     private void Start() {
         moveSpeed = Random.Range(0.8f, 2f);
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -23,6 +32,41 @@ public class ZombieMovment : MonoBehaviour {
     private void AttackPlayer() {
         Vector2 direction = (player.position - transform.position).normalized;
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+
+        #region Sprite
+        // Prioritize movement based on the dominant axis (horizontal or vertical)
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) {
+            // Horizontal movement is dominant
+            if (direction.x < 0) {
+                // Zombie moving left
+                spriteDown.SetActive(false);
+                spriteUp.SetActive(false);
+                spriteLeft.SetActive(true);
+                spriteRight.SetActive(false);
+            } else if (direction.x > 0) {
+                // Zombie moving right
+                spriteDown.SetActive(false);
+                spriteUp.SetActive(false);
+                spriteLeft.SetActive(false);
+                spriteRight.SetActive(true);
+            }
+        } else {
+            // Vertical movement is dominant
+            if (direction.y > 0) {
+                // Zombie moving up
+                spriteDown.SetActive(false);
+                spriteUp.SetActive(true);
+                spriteLeft.SetActive(false);
+                spriteRight.SetActive(false);
+            } else if (direction.y < 0) {
+                // Zombie moving down
+                spriteDown.SetActive(true);
+                spriteUp.SetActive(false);
+                spriteLeft.SetActive(false);
+                spriteRight.SetActive(false);
+            }
+        }
+        #endregion
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
