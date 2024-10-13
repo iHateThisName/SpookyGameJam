@@ -10,4 +10,5 @@ public class ButtonManager : MonoBehaviour {
         Application.Quit();
     }
     public void OnStart() => GameManager.Instance.LoadScene(EnumScene.TutorialLevel01);
+    public void OnMainMenu() => GameManager.Instance.LoadScene(EnumScene.MainMenu);
 }
