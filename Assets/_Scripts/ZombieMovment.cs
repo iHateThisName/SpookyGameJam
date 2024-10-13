@@ -8,6 +8,7 @@ public class ZombieMovment : MonoBehaviour {
     private Transform player;
 
     public bool isAttacking = true;
+    public bool isSuperFast = false;
 
     [SerializeField]
     private GameObject spriteDown;
@@ -20,6 +21,7 @@ public class ZombieMovment : MonoBehaviour {
 
     private void Start() {
         moveSpeed = Random.Range(0.8f, 2f);
+        if (isSuperFast) moveSpeed = 3.5f;
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
