@@ -28,6 +28,7 @@ public class DialogueManager : MonoBehaviour {
             dialogText[index].SetActive(true);
         } else {
             Debug.Log("Load next Scene dialog finished");
+            GameManager.Instance.LoadScene(EnumScene.Level01);
         }
     }
 
