@@ -86,7 +86,9 @@ public class PlayerManager : MonoBehaviour {
         sanity--;
         if (sanity <= 0) {
             //GameManager.Instance.LoadScene(EnumScene.GameOverScene);
+            sanity = 3;
             GameManager.Instance.LoadScene(EnumScene.MainMenu);
+            sanity = 3;
         }
     }
 }
