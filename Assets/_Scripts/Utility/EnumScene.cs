@@ -1,5 +1,16 @@
 public enum EnumScene {
     MainMenu = 0,
-    TutorialLevel01 = 1,
-    TutorialLevel02 = 2,
+    GameOverScene = 1,
+    TutorialLevel01 = 2,
+    TutorialLevel02 = 3,
+    Level01 = 4,
+    Level02 = 5, 
+    Level03 = 6,
+    Level04 = 7,
+    Level05 = 8,
+    Level06 = 9,
+    Level07 = 10,
+    Level08 = 11,
+    Level09 = 12,
+    Level10 = 13,
 }
