@@ -9,6 +9,7 @@ public class ZombieMovment : MonoBehaviour {
 
     public bool isAttacking = true;
     public bool isSuperFast = false;
+    private bool isFreezed = false;
 
     [SerializeField]
     private GameObject spriteDown;
@@ -72,8 +73,30 @@ public class ZombieMovment : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
+        if (other.CompareTag("Player") && !isFreezed) {
             isAttacking = true;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Player")) {
+            Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+
+            // Calculate the direction to push the player (opposite of the zombie's movement direction)
+            //Vector2 pushDirection = (player.position - transform.position).normalized;
+
+            // Apply a force to the player's Rigidbody2D
+            //float pushForce = 0.5f;
+            //playerRb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+
+            StartCoroutine(FreezeAndPushPlayer(playerRb));
+        }
+    }
+
+    private IEnumerator FreezeAndPushPlayer(Rigidbody2D playerRb) {
+        isAttacking = false;
+        isFreezed = true;
+        yield return new WaitForSeconds(2f);
+        isFreezed = false;
     }
 }
